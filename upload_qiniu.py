@@ -2,6 +2,8 @@
 
 import os
 import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 from qiniu import Auth, put_file
 import qiniu.config
@@ -28,6 +30,7 @@ def upload_qiniu(path):
     ''' upload file to qiniu '''
     dirname, filename = os.path.split(path)
     key = '%s' % filename # upload to qiniu's dir
+    key = key.decode('gbk').encode('utf8')
 
     token = q.upload_token(bucket_name, key)
     progress_handler = lambda progress, total: progress
@@ -46,5 +49,5 @@ if __name__ == '__main__':
         ahk.ahktextdll("") #start script in persistent mode (wait for action)
         while not ahk.ahkReady(): #Wait for AutoHotkey.dll to start
             time.sleep(0.01)
-        ahk.ahkExec(u"clipboard = %s" % markdown_url)
+        ahk.ahkExec(u"clipboard = %s" % markdown_url.decode('gbk'))
     else: print "upload_failed"
