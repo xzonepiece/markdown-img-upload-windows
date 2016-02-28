@@ -12,6 +12,7 @@ from ctypes import *
 import time
 
 import ConfigParser
+from datetime import datetime
 
 
 cf = ConfigParser.ConfigParser()
@@ -26,10 +27,12 @@ q = Auth(access_key, secret_key)
 mime_type = "image/jpeg"
 params = {'x:a': 'a'}
 
-def upload_qiniu(path):
+prefix = datetime.now().strftime('%Y_%m_%d')
+
+def upload_qiniu(path, prefix):
     ''' upload file to qiniu '''
     dirname, filename = os.path.split(path)
-    key = '%s' % filename # upload to qiniu's dir
+    key = '%s_%s' % (prefix, filename) # upload to qiniu's dir
     key = key.decode('gbk').encode('utf8')
 
     token = q.upload_token(bucket_name, key)
@@ -39,11 +42,12 @@ def upload_qiniu(path):
 
 if __name__ == '__main__':
     path = sys.argv[1]
-    ret = upload_qiniu(path)
+    ret = upload_qiniu(path, prefix)
     if ret:
         # upload success
         name = os.path.split(path)[1]
-        markdown_url = "![](%s/%s)" % (url, name)
+        alt = name.split('.', 1)
+        markdown_url = "![%s](%s/%s_%s \"%s\")" % (alt[0], url, prefix, name, alt[0])
         # make it to clipboard
         ahk = cdll.AutoHotkey #load AutoHotkey
         ahk.ahktextdll("") #start script in persistent mode (wait for action)
