@@ -19,8 +19,8 @@
 [qiniu]
 ak     = # 填入你的AK
 sk     = # 填入你的SK
-url    = # 填入你的七牛空间名称
-bucket = # 填入你的域名地址
+url    = # 填入你的域名地址
+bucket = # 填入你的空间名称
 ```
 3. 将`markdown_picture.ahk`文件中*python*后面的地址替换成`upload_qiniu.py`文件的绝对地址
 4. 双击`markdown_picture.ahk`文件，执行该脚本
