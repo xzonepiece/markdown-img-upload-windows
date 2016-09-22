@@ -21,9 +21,10 @@ ak     = # 填入你的AK
 sk     = # 填入你的SK
 url    = # 填入你的域名地址
 bucket = # 填入你的空间名称
+styleName = # 填入图片样式
 ```
-3. 将`markdown_picture.ahk`文件中*python*后面的地址替换成`upload_qiniu.py`文件的绝对地址
-4. 双击`markdown_picture.ahk`文件，执行该脚本
+1. 将`markdown_picture.ahk`文件中*python*后面的地址替换成`upload_qiniu.py`文件的绝对地址
+2. 双击`markdown_picture.ahk`文件，执行该脚本
 
 ## 使用
 选中图片文件，按<kbd>ctrl</kbd>+<kbd>alt</kbd>+<kbd>c</kbd>，此时会跳出cmd窗口，当该窗口自动关闭之后，按<kbd>alt</kbd>+<kbd>v</kbd>就会在Markdown文档中插入图片

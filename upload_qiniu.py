@@ -21,6 +21,7 @@ access_key = cf.get('qiniu', 'ak') # AK
 secret_key = cf.get('qiniu', 'sk') # SK
 bucket_name = cf.get('qiniu', 'bucket') # 七牛空间名
 url = cf.get('qiniu', 'url') # url
+styleName = cf.get('qiniu', 'styleName')
 
 q = Auth(access_key, secret_key)
 
@@ -47,7 +48,7 @@ if __name__ == '__main__':
         # upload success
         name = os.path.split(path)[1]
         alt = name.split('.', 1)
-        markdown_url = "![%s](%s/%s_%s \"%s\")" % (alt[0], url, prefix, name, alt[0])
+        markdown_url = "![%s](%s/%s_%s_%s \"%s\")" % (alt[0], url, prefix, name, styleName, alt[0])
         # make it to clipboard
         ahk = cdll.AutoHotkey #load AutoHotkey
         ahk.ahktextdll("") #start script in persistent mode (wait for action)
